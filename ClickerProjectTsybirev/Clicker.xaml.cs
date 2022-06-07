@@ -27,7 +27,7 @@ namespace ClickerProjectTsybirev
                 HorizontalOptions = LayoutOptions.Start
 
             };
-            img = new Image { };
+            img = new Image {  };
 
             sw = new Switch
             {
@@ -37,30 +37,91 @@ namespace ClickerProjectTsybirev
             };
 
             TapGestureRecognizer tap = new TapGestureRecognizer();
-            tap.Tapped += Tap_Tapped; ;
+            
+            tap.Tapped += Tap_Tapped; 
             sw.Toggled += Sw_Toggled;
             img.GestureRecognizers.Add(tap);
             Button button = new Button
             {
-                Text = "Нажми!",
+                Text = "Bonus(25)",
                 BorderWidth = 1,
                 HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.CenterAndExpand
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                IsVisible = true
             };
-            StackLayout st = new StackLayout { Children = { img, sw, button } };
+            Button button2 = new Button
+            {
+                Text = "Bonus(50)",
+                BorderWidth = 1,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                IsVisible = true
+            };
+            Button button3 = new Button
+            {
+                Text = "+10",
+                BorderWidth = 1,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                IsVisible = true
+            };
+            button.Clicked += Button_Clicked;
+            button2.Clicked += Button2_Clicked;
+            button3.Clicked += Button3_Clicked;
+            StackLayout st = new StackLayout { Children = { img, sw, button, button2,button3 } };
             Content = st;
             st.Children.Add(lb);
+            
             
 
 
         }
 
+        private void Button3_Clicked(object sender, EventArgs e)
+        {
+            if (i >= 10)
+            {
+                i += 10;
+
+            }
+        }
+        Random rd = new Random();
+
+        private void Button2_Clicked(object sender, EventArgs e)
+        {
+            if (i >= 50)
+            {
+                
+                img.Source = "aomine.png";
+                this.BackgroundImage = "fonaomine.jpg";
+         
+            }
+            else
+            {
+                img.Source = "ao25.png";
+            }
+
+        }
+
+       
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            if (i >= 25)
+            {
+                img.Source = "homer.png";
+                this.BackgroundImage = "ss.jpg";
+
+            }
+        }
+        
+
         private void Sw_Toggled(object sender, ToggledEventArgs e)
         {
             if (sw.IsToggled)
             {
-                img.Source = "sonce.png";
-                this.BackgroundImage = "nebo.jpg";
+                img.Source = "moon.png";
+                this.BackgroundImage = "fon1.jpg";
             }
             else
             {
@@ -71,7 +132,7 @@ namespace ClickerProjectTsybirev
 
         int i = 0;
 
-        private void Tap_Tapped(object sender, EventArgs e)
+        private async void Tap_Tapped(object sender, EventArgs e)
         {
             i++;
             lb.Text = "Ты нажал " + i + " раз";
@@ -95,6 +156,8 @@ namespace ClickerProjectTsybirev
                     // Other error has occurred.
                 }
             }
+
         }
+       
     }
 }
