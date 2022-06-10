@@ -12,6 +12,7 @@ namespace ClickerProjectTsybirev
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Clicker : ContentPage
     {
+        public static bool size = false;
         Label lb;
         BoxView box;
         Image img;
@@ -89,16 +90,20 @@ namespace ClickerProjectTsybirev
 
         private void Button2_Clicked(object sender, EventArgs e)
         {
-            if (i >= 50)
+            if (i >= 50 && size ==  false)
             {
                 
-                img.Source = "aomine.png";
+                img.Source = "ao25.png";
                 this.BackgroundImage = "fonaomine.jpg";
-         
+                if (i >=50)
+                {
+                    size = true;
+                }
             }
             else
             {
-                img.Source = "ao25.png";
+                img.Source = "ao50.png";
+                size= false;
             }
 
         }
